@@ -1,0 +1,430 @@
+/* ============================================
+   FUTURE ME – Custom Styles
+   (Works alongside Tailwind CSS)
+   Only things Tailwind can't do easily:
+   animations, gradients, blobs, confetti, etc.
+   ============================================ */
+
+/* ---- Section Show/Hide ---- */
+.section {
+  display: none;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.section.active {
+  display: flex;
+}
+
+/* ---- Title Gradients ---- */
+.title-gradient-blue {
+  background: linear-gradient(135deg, #3b82f6, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-gradient-pink {
+  background: linear-gradient(135deg, #ec4899, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Primary Button ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #fff;
+  background: linear-gradient(135deg, #3b82f6, #7c3aed);
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* ---- Secondary Button ---- */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #4b5563;
+  background: #fff;
+  padding: 14px 28px;
+  border: 2px solid #e5e7eb;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+/* ---- Progress Bar Fill ---- */
+.progress-bar-fill {
+  background: linear-gradient(90deg, #3b82f6, #7c3aed, #ec4899);
+  position: relative;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45));
+  border-radius: 50px;
+}
+
+/* ---- Quiz Option Buttons ---- */
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  background: #f8fafc;
+  border: 2.5px solid transparent;
+  border-radius: 18px;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.option-btn:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.04);
+  transform: translateX(5px);
+}
+
+.option-btn.selected {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.07);
+  color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.option-btn.selected .option-letter {
+  background: linear-gradient(135deg, #3b82f6, #7c3aed);
+  color: #fff;
+}
+
+.option-letter {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: #e8edf5;
+  color: #6b7280;
+  border-radius: 11px;
+  transition: all 0.25s ease;
+}
+
+.option-emoji {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* ---- Question Card Transitions ---- */
+#questionCard {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#questionCard.fade-out {
+  opacity: 0;
+  transform: translateX(-25px);
+}
+
+#questionCard.fade-in {
+  animation: slideInRight 0.35s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(25px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ---- Result Cards ---- */
+.result-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  text-align: left;
+}
+
+.card-heading {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 18px;
+}
+
+/* ---- Percentage Bars ---- */
+.bar-track {
+  height: 12px;
+  background: #f1f5f9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 20px;
+  width: 0%;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-fill.analytical { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+.bar-fill.creative   { background: linear-gradient(90deg, #ec4899, #f9a8d4); }
+.bar-fill.social     { background: linear-gradient(90deg, #10b981, #6ee7b7); }
+.bar-fill.technical  { background: linear-gradient(90deg, #3b82f6, #93c5fd); }
+.bar-fill.sports     { background: linear-gradient(90deg, #f97316, #fdba74); }
+
+/* ---- Career Chips ---- */
+.career-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  padding: 14px 16px;
+  border-radius: 18px;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.career-chip:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.career-chip.highlighted {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.career-icon {
+  font-size: 1.4rem;
+}
+
+/* ---- Skill Tags ---- */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f1f5f9;
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #374151;
+  transition: transform 0.2s ease;
+}
+
+.skill-tag:hover {
+  transform: scale(1.06);
+}
+
+/* ---- Motivation Card ---- */
+.motivation-glow {
+  border: 2px solid rgba(59, 130, 246, 0.1);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(16, 185, 129, 0.03));
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Staggered entrance animation */
+.anim-up {
+  opacity: 0;
+  animation: animUp 0.65s ease-out forwards;
+}
+
+@keyframes animUp {
+  0%   { opacity: 0; transform: translateY(22px) scale(0.97); }
+  60%  { transform: translateY(-3px) scale(1.005); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Scale-in for result header */
+.anim-scale {
+  animation: animScale 0.6s ease-out forwards;
+}
+
+@keyframes animScale {
+  0%   { opacity: 0; transform: scale(0.75); }
+  60%  { transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Gentle bounce for result emoji */
+.bounce-slow {
+  animation: bounceSlow 1.2s ease-in-out infinite;
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* ============================================
+   BACKGROUND BLOBS
+   ============================================ */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08;
+  filter: blur(2px);
+  animation: blobFloat 22s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 280px; height: 280px;
+  background: #7c3aed;
+  top: -60px; right: -50px;
+}
+
+.blob-2 {
+  width: 200px; height: 200px;
+  background: #ec4899;
+  top: 45%; left: -70px;
+  animation-delay: -5s;
+  animation-duration: 26s;
+}
+
+.blob-3 {
+  width: 150px; height: 150px;
+  background: #10b981;
+  bottom: 12%; right: 8%;
+  animation-delay: -10s;
+  animation-duration: 20s;
+}
+
+.blob-4 {
+  width: 100px; height: 100px;
+  background: #f97316;
+  top: 25%; left: 35%;
+  animation-delay: -3s;
+  animation-duration: 18s;
+}
+
+.blob-5 {
+  width: 220px; height: 220px;
+  background: #3b82f6;
+  bottom: -80px; left: 45%;
+  animation-delay: -8s;
+  animation-duration: 28s;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(25px, -35px) scale(1.05); }
+  66%      { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* ============================================
+   CONFETTI
+   ============================================ */
+.confetti-piece {
+  position: absolute;
+  top: -15px;
+  border-radius: 3px;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(105vh) rotate(700deg); opacity: 0; }
+}
+
+/* ============================================
+   RESPONSIVE TWEAKS
+   ============================================ */
+@media (max-width: 480px) {
+  .option-btn {
+    padding: 13px 14px;
+    font-size: 0.92rem;
+    gap: 10px;
+  }
+
+  .option-letter {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+    border-radius: 9px;
+  }
+
+  .option-emoji {
+    font-size: 1.1rem;
+  }
+
+  .result-card {
+    padding: 22px 18px;
+  }
+
+  .btn-primary {
+    font-size: 1.05rem;
+    padding: 14px 30px;
+  }
+}
+
+/* ---- Accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.option-btn:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 3px;
+}

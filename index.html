@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Future Me – Career Discovery Quiz</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Baloo 2 (playful display) + Quicksand (clean body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['"Baloo 2"', "cursive"],
+              body: ['"Quicksand"', "sans-serif"],
+            },
+            colors: {
+              brand: {
+                50: "#f0f7ff",
+                100: "#e0efff",
+                200: "#bae0ff",
+                500: "#3b82f6",
+                600: "#2563eb",
+                700: "#1d4ed8",
+              },
+              analytical: {
+                light: "#ede9fe",
+                main: "#7c3aed",
+                dark: "#5b21b6",
+              },
+              creative: { light: "#fce7f3", main: "#ec4899", dark: "#be185d" },
+              social: { light: "#d1fae5", main: "#10b981", dark: "#047857" },
+              technical: { light: "#dbeafe", main: "#3b82f6", dark: "#1d4ed8" },
+              sports: { light: "#ffedd5", main: "#f97316", dark: "#c2410c" },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Custom CSS for animations & effects Tailwind can't handle -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body
+    class="font-body bg-gradient-to-br from-blue-50 via-white to-emerald-50 text-gray-800 min-h-screen overflow-x-hidden"
+  >
+    <!-- ========== FLOATING BACKGROUND BLOBS ========== -->
+    <div
+      class="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="blob blob-4"></div>
+      <div class="blob blob-5"></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1️⃣  HOME / WELCOME SCREEN                -->
+    <!-- ========================================== -->
+    <section id="home" class="section active">
+      <div class="max-w-xl mx-auto text-center px-5 py-10">
+        <!-- Haider Khan presents... -->
+        <p
+          class="anim-up text-sm font-semibold tracking-widest uppercase text-gray-400 mb-2"
+          style="animation-delay: 0.05s"
+        >
+          Haider Khan presents&hellip;
+        </p>
+
+        <!-- Title -->
+        <h1
+          class="anim-up font-display leading-tight mb-4"
+          style="animation-delay: 0.15s"
+        >
+          <span
+            class="block text-6xl sm:text-7xl md:text-8xl font-extrabold title-gradient-blue"
+            >Future</span
+          >
+          <span
+            class="block text-6xl sm:text-7xl md:text-8xl font-extrabold title-gradient-pink"
+            >Me</span
+          >
+        </h1>
+
+        <!-- Tagline -->
+        <p
+          class="anim-up font-display text-xl sm:text-2xl font-bold text-gray-700 mb-3"
+          style="animation-delay: 0.25s"
+        >
+          Find out what you could be when you grow up!
+        </p>
+
+        <!-- Description -->
+        <p
+          class="anim-up text-gray-500 text-base sm:text-lg leading-relaxed max-w-md mx-auto mb-8"
+          style="animation-delay: 0.35s"
+        >
+          Answer 6 fun questions, discover your superpower, and explore careers
+          that match <strong class="text-gray-700">you</strong>. No right or
+          wrong answers!
+        </p>
+
+        <!-- Start button -->
+        <button
+          id="startBtn"
+          onclick="startQuiz()"
+          class="anim-up btn-primary group"
+          style="animation-delay: 0.45s"
+        >
+          <span class="text-xl mr-1">✨</span>
+          Let's Go!
+          <span
+            class="inline-block transition-transform duration-300 group-hover:translate-x-1"
+            >→</span
+          >
+        </button>
+
+        <!-- Info badges -->
+        <div
+          class="anim-up flex items-center justify-center gap-4 sm:gap-6 mt-10 text-sm font-semibold text-gray-400"
+          style="animation-delay: 0.55s"
+        >
+          <div class="flex flex-col items-center">
+            <span class="text-2xl font-display font-bold text-brand-600"
+              >6</span
+            >
+            <span>Questions</span>
+          </div>
+          <div class="w-px h-8 bg-gray-200 rounded-full"></div>
+          <div class="flex flex-col items-center">
+            <span class="text-2xl font-display font-bold text-brand-600"
+              >2</span
+            >
+            <span>Minutes</span>
+          </div>
+          <div class="w-px h-8 bg-gray-200 rounded-full"></div>
+          <div class="flex flex-col items-center">
+            <span class="text-2xl font-display font-bold text-brand-600"
+              >🎉</span
+            >
+            <span>Fun!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2️⃣  QUIZ SCREEN                           -->
+    <!-- ========================================== -->
+    <section id="quiz" class="section">
+      <div class="max-w-2xl w-full mx-auto px-5 py-8">
+        <!-- Progress -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-2">
+            <span
+              id="progressLabel"
+              class="font-display font-bold text-sm text-gray-500"
+              >Question 1 of 6</span
+            >
+            <span
+              id="progressPercent"
+              class="font-display font-bold text-sm text-brand-600"
+              >0%</span
+            >
+          </div>
+          <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+            <div
+              id="progressFill"
+              class="h-full rounded-full progress-bar-fill transition-all duration-500 ease-out"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Question Card -->
+        <div
+          id="questionCard"
+          class="bg-white rounded-3xl shadow-lg shadow-blue-100/50 p-7 sm:p-10 mb-6 relative overflow-hidden border border-gray-100/80"
+        >
+          <!-- Top accent bar -->
+          <div
+            class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+          ></div>
+
+          <span
+            id="questionNumber"
+            class="inline-block font-display font-bold text-xs tracking-wide text-brand-600 bg-blue-50 px-4 py-1.5 rounded-full mb-5"
+            >Q1</span
+          >
+
+          <h2
+            id="questionText"
+            class="font-display text-xl sm:text-2xl font-bold text-gray-800 leading-snug mb-7"
+          ></h2>
+
+          <!-- Options -->
+          <div id="optionsContainer" class="flex flex-col gap-3">
+            <!-- JS renders here -->
+          </div>
+        </div>
+
+        <!-- Nav buttons -->
+        <div class="flex justify-between gap-4">
+          <button
+            id="prevBtn"
+            onclick="prevQuestion()"
+            disabled
+            class="btn-secondary disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            ← Back
+          </button>
+          <button
+            id="nextBtn"
+            onclick="nextQuestion()"
+            disabled
+            class="btn-primary disabled:opacity-30 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3️⃣  RESULTS SCREEN                        -->
+    <!-- ========================================== -->
+    <section id="result" class="section">
+      <div class="max-w-2xl w-full mx-auto px-5 py-8 pb-20 text-center">
+        <!-- Confetti container -->
+        <div
+          id="confettiWrapper"
+          class="fixed inset-0 pointer-events-none z-50"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Result header -->
+        <div id="resultHeader" class="mb-10 anim-scale">
+          <div id="resultEmoji" class="text-7xl mb-3 bounce-slow">🔬</div>
+          <h1
+            class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3"
+          >
+            You are&nbsp;<span id="resultType" class="title-gradient-blue"
+              >Analytical</span
+            >!
+          </h1>
+          <p
+            id="resultSubtitle"
+            class="text-gray-500 text-base sm:text-lg leading-relaxed max-w-lg mx-auto"
+          ></p>
+        </div>
+
+        <!-- Percentage breakdown -->
+        <div class="result-card anim-up" style="animation-delay: 0.2s">
+          <h3 class="card-heading">📊 &nbsp;Your Personality Breakdown</h3>
+          <div id="barsContainer" class="flex flex-col gap-5">
+            <!-- JS renders bars -->
+          </div>
+        </div>
+
+        <!-- Career suggestions -->
+        <div class="result-card anim-up" style="animation-delay: 0.35s">
+          <h3 class="card-heading">🎯 &nbsp;Careers That Match You</h3>
+          <div id="careerGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <!-- JS renders career chips -->
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="result-card anim-up" style="animation-delay: 0.45s">
+          <h3 class="card-heading">💪 &nbsp;Skills to Grow</h3>
+          <div id="skillsList" class="flex flex-wrap gap-2.5 justify-center">
+            <!-- JS renders skill tags -->
+          </div>
+        </div>
+
+        <!-- Motivation -->
+        <div
+          class="result-card motivation-glow anim-up text-center"
+          style="animation-delay: 0.55s"
+        >
+          <div class="text-4xl mb-3">🌟</div>
+          <p
+            id="motivationText"
+            class="font-display text-lg font-bold text-gray-700 leading-relaxed"
+          ></p>
+        </div>
+
+        <!-- Restart -->
+        <button
+          onclick="restartQuiz()"
+          class="btn-primary mt-4 anim-up"
+          style="animation-delay: 0.65s"
+        >
+          <span class="text-xl mr-1">🔄</span>
+          Try Again
+        </button>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
